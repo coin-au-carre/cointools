@@ -1,0 +1,18 @@
+#ifndef COINTOOLS_HPP_
+#define COINTOOLS_HPP_
+
+#include "config.hpp"
+
+#include "algorithm.hpp"
+#include "constant.hpp"
+#include "debug.hpp"
+#include "functional.hpp"
+
+#ifndef COIN_DISABLE_PRETTY_PRINT
+#include "pretty_print.hpp"
+#endif
+
+#include "random.hpp"
+#include "timer.hpp"
+
+#endif // COINTOOLS_HPP_

@@ -1,0 +1,7 @@
+#pragma once
+
+
+// #define COIN_DISABLE_PRETTY_PRINT
+
+// #define COIN_DISABLE_BOOST_SERIALIZATION
+
