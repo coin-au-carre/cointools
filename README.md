@@ -3,6 +3,8 @@ Coin Tools
 
 A small bunch of C++14 headers which can come handy !
 
+[![Build Status](https://travis-ci.org/coin-au-carre/cointools.svg?branch=master)](https://travis-ci.org/coin-au-carre/cointools)
+
 ### Requirements
 
 C++14 compliant compiler such as :
@@ -14,7 +16,7 @@ C++14 compliant compiler such as :
 ### Usage
 
 Just copy the `coin` folder in your project and `#include "coin/coin"` whenever needed !  
-Examples are available in `demo.cpp` just type `make` or `make debug`.  
+Examples are available in `demo.cpp` just type `make g++` or `make clang++`.  
 
 ### Features
 
