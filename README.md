@@ -1,7 +1,7 @@
 Coin Tools
 ----------
 
-A small bunch of C++14 headers which can come handy !
+A small bunch of C++14 headers which can come in handy !
 
 [![Build Status](https://travis-ci.org/coin-au-carre/cointools.svg?branch=master)](https://travis-ci.org/coin-au-carre/cointools)
 
@@ -16,30 +16,32 @@ C++14 compliant compiler such as :
 ### Usage
 
 Just copy the `include/coin` folder in your project and add `#include "coin/coin"` in your source files whenever needed !  
-Examples are available in `demo.cpp` and compilable with `make gcc` or `make clang`.  
+Many cool features are illustrated [here](https://github.com/coin-au-carre/cointools/blob/master/demo/demo.cpp).  
+Compile examples with `make gcc` or `make clang`.
 
 ### Features
 
-Coin Tools comes with cool features which are illustrated [here](https://github.com/coin-au-carre/cointools/blob/master/demo.cpp) !
-
 #### Pretty print
 
-You can print some STL containers such as `std::vector` directly. 
+You can print some STL containers directly. 
 
 ```c++
-	using coin::operator<<; // using the pretty print feature
-	std::vector<int> v1(10);
-	std::generate(v1.begin(), v1.end(), [](){static int n{0}; return n ++;});
-	std::cout << v1 << std::endl;
+	std::map<std::string, int> students;
+	students["John"]=12;
+	students["Paul"]=14;
+	students["Elton"]=10;
+	std::cout << students << std::endl;
 ```
-> [0;1;2;3;4;5;6;7;8;9]
+> [{Elton:10};{John:12};{Paul:14}]
+
 
 You can even print nested containers !
+
 ```c++
-	std::vector<std::vector<double>> v2{{1.4,4.3,2.4},{2.0,42.1},{1.4}};
-	std::cout << v2 << std::endl;
+	std::vector<std::vector<std::string>> v{{"Jess","Samuel","Simon"},{"Natacha","Claudia"},{"Bradd"}};
+	std::cout << v << std::endl;
 ```
-> [[1.400000;4.300000;2.400000];[2.000000;42.100000];[1.400000]]
+> [[Jess;Samuel;Simon];[Natacha;Claudia];[Bradd]]
 
 
 #### Functional
@@ -48,11 +50,11 @@ Some generic and fast convenient functions such as `template<class Container> co
  
 ```c++
 	int array[] = {4,3,5,7,4,7,2,3};
-	for(auto el = coin::begin(array); el != coin::end(array); el ++) { std::cout << *el << ";"; } // begin, end for plain array
+	for(auto el = coin::begin(array); el != coin::end(array); el ++) { std::cout << *el << ";"; } // begin, end for plain C-style array
 	std::vector<int> v{array, array + coin::get_size_of_array(array)}; // or auto v = coin::make_vector_from_array(array);
-	coin::remove_element(v, 7);
+	coin::remove_element(v, 7); // remove specific element
 	std::cout << "\nAfter remove_element(v,7) : " << v << std::endl;
-	coin::remove_duplicate(v);
+	coin::remove_duplicate(v);  // remove all redundant elements
 	std::cout << "After remove_duplicate : " << v << std::endl;
 ```
 
@@ -64,7 +66,6 @@ Some generic and fast convenient functions such as `template<class Container> co
 #### Convenient timers, randomizers
 
 ```c++
-	using coin::operator<<; // using the pretty print feature
 	{
 		coin::Timer<> timer; // begin timer which will automatically end at end of scope
 		std::vector<float> v(8);
@@ -112,7 +113,7 @@ When not compiling with `-DNDEBUG` flag the debug macros are working :
 
 #### And much more
 
-* Compile time constants and computations (min, max, sum) taking variadic arguments `coin::min(1.0,5,-7.5f)`.  
+* Compile time constants (pi, infinity, epsilon) and computations (min, max, sum) taking variadic arguments `coin::min(1.0,5,-7.5f)`.  
 * Helper functions to wrap vectors elements into vector of smart pointers `coin::make_vector_unique(const std::vector&)`.
 
 ```c++
@@ -134,7 +135,8 @@ When not compiling with `-DNDEBUG` flag the debug macros are working :
 This is an ongoing work. 
 
 * reduce compile time
-* better pretty print 
+* better pretty print (nested array not working)
+* more tests
 
 
 #### License

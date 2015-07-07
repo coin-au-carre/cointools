@@ -68,8 +68,6 @@ template<class K, class T, class Comp, class Alloc>
 struct is_container<std::map<K, T, Comp, Alloc>> : public std::true_type {};
 
 
-// template<typename T> std::string stringify_bis(const T& t) { return t; }
-
 template <typename Cont, std::enable_if_t<!is_container<typename Cont::value_type>::value>* = nullptr>
 std::string to_string(Cont const& container) {
 	using std::to_string;
@@ -95,6 +93,14 @@ template<class T, class Alloc>
 std::ostream& operator<<(std::ostream& os, const std::vector<T, Alloc>& v) {
 	using std::operator<<;
 	os << to_string(v);
+	return os;
+}
+
+
+template<class T, std::size_t N> 
+std::ostream& operator<<(std::ostream& os, const std::array<T, N>& arr) {
+	using std::operator<<;
+	os << to_string(arr);
 	return os;
 }
 

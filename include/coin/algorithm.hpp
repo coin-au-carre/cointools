@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <utility>
+#include <cassert>
 
 namespace coin {
 
@@ -61,6 +62,32 @@ void remove_element(std::map<K,T,Comp,Alloc>& m, const K& k) {
 	}
 }
 
+template<class ForwardIt, class T>
+T lower_bound_index(ForwardIt first, ForwardIt last, const T& value) {
+    return (std::lower_bound (first, last, value) - first);
+}
+
+template<class ForwardIt, class T>
+T upper_bound_index(ForwardIt first, ForwardIt last, const T& value) {
+    return (std::upper_bound (first, last, value) - first);
+}
+
+
+template<typename T, typename = std::enable_if_t<std::is_integral<T>::value>>
+bool multi_dim_counter(std::vector<T>& v, const std::vector<T>& lower, const std::vector<T>& upper) {
+	assert(v.size() == lower.size());
+	assert(v.size() == upper.size());
+	for (auto i = v.size(); i-- != 0; ) {
+		++ v[i];
+		if (v[i] != upper[i] + 1) {
+			return true;
+		}
+		v[i] = lower[i];
+	}
+	return false;
+}
+
+
 template<typename T> 
 constexpr T min(T a, T b ) { return a > b ? b : a; }
 
@@ -98,6 +125,9 @@ using _impl_algorithm::end;
 using _impl_algorithm::get_size_of_array;
 using _impl_algorithm::remove_duplicate;
 using _impl_algorithm::remove_element;
+using _impl_algorithm::lower_bound_index;
+using _impl_algorithm::upper_bound_index;
+using _impl_algorithm::multi_dim_counter;
 using _impl_algorithm::min;
 using _impl_algorithm::max;
 using _impl_algorithm::sum;

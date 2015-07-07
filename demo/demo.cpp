@@ -10,25 +10,20 @@
 
 void demo_pretty_print() {
 	using coin::operator<<; // using the pretty print feature
-	std::vector<int> v1(10);
-	std::generate(v1.begin(), v1.end(), [](){static int n{0}; return n ++;});
-	std::cout << v1 << std::endl;
+	std::array<int,10> arr;
+	arr.fill(42);
+	std::cout << arr << std::endl;
 
-
-	std::vector<std::vector<double>> v2{{1.4,4.3,2.4},{2.0,42.1},{1.4}};
-	std::cout << v2 << std::endl;
-
-	std::vector<std::vector<std::string>> v3{{"Jess","Samuel","Simon"},{"Natacha","Claudia"},{"Bradd"}};
-	std::cout << v3 << std::endl;
+	std::vector<std::vector<std::string>> v{{"Jess","Samuel","Simon"},{"Natacha","Claudia"},{"Bradd"}};
+	std::cout << v << std::endl;
 
 	std::map<std::string, int> students;
-
 	students["John"]=12;
 	students["Paul"]=14;
 	students["Elton"]=10;
-	coin::remove_element(students, std::string{"Paul"});
+	coin::remove_element(students, std::string{"Paul"}); // removing Paul key item !
 	std::cout << students << std::endl;
-	}
+}
 
 void demo_timer_and_random() {
 	using coin::operator<<; // using the pretty print feature
@@ -65,11 +60,11 @@ void demo_functional() {
 	using coin::operator<<;
 	int array[] = {4,3,5,7,4,7,2,3};
 	std::cout << "Original : ";
-	for(auto el = coin::begin(array); el != coin::end(array); el ++) { std::cout << *el << ";"; } // begin, end for plain array
+	for(auto el = coin::begin(array); el != coin::end(array); el ++) { std::cout << *el << ";"; } // begin, end for plain C-style array
 	std::vector<int> v{array, array + coin::get_size_of_array(array)}; // or auto v = coin::make_vector_from_array(array);
-	coin::remove_element(v, 7);
+	coin::remove_element(v, 7); // remove specific element
 	std::cout << "\nAfter remove_element(v,7) : " << v << std::endl;
-	coin::remove_duplicate(v);
+	coin::remove_duplicate(v);  // remove all redundant elements
 	std::cout << "After remove_duplicate : " << v << std::endl;
 }	
 
@@ -97,6 +92,16 @@ void demo_debug() {
 	coin_assert(2>4,"this message is for assertion debug");
 }
 
+void demo_multi_dim_counter() {
+	using coin::operator<<;
+	const std::vector<int> lower_bound({-4,-1,1});
+	const std::vector<int> upper_bound({-3,1,2});
+	std::vector<int> current = lower_bound;
+	do {
+		std::cout << current << std::endl;
+	} while (coin::multi_dim_counter(current, lower_bound, upper_bound));
+}
+
 int main() {
 	demo_pretty_print();
 	demo_timer_and_random();
@@ -104,4 +109,5 @@ int main() {
 	demo_compile_time();
 	demo_functional();
 	demo_debug();
+	demo_multi_dim_counter();
 }

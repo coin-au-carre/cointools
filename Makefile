@@ -3,23 +3,20 @@ CC_gcc=g++
 CC_clang=clang++
 CFLAGS=-I./include/ -Wall -pedantic -Wextra -std=c++14 -DNDEBUG -O2
 
-CFLAGS_DEBUG=-I./include/ -Wall -pedantic -Wextra -std=c++14
-
-
-all: 
-	@echo Use `make gcc` or `make clang`
+CFLAGS_DBG=-I./include/ -Wall -pedantic -Wextra -std=c++14
+SRC=demo/demo.cpp
 
 gcc:
-	$(CC_gcc) $(CFLAGS) demo.cpp -o demo
-	$(CC_gcc) $(CFLAGS_DEBUG) demo.cpp -o demo_debug
+	$(CC_gcc) $(CFLAGS)     $(SRC) -o demo_gcc
+	$(CC_gcc) $(CFLAGS_DBG) $(SRC) -o demo_gcc_debug
 	
 clang:
-	$(CC_clang) $(CFLAGS) demo.cpp -o demo
-	$(CC_clang) $(CFLAGS_DEBUG) demo.cpp -o demo_debug
+	$(CC_clang) $(CFLAGS)     $(SRC) -o demo_clang
+	$(CC_clang) $(CFLAGS_DBG) $(SRC) -o demo_clang_debug
 
 $(CXX):
-	$(CXX) $(CFLAGS) demo.cpp -o demo
-	$(CXX) $(CFLAGS_DEBUG) demo.cpp -o demo_debug
+	$(CXX) $(CFLAGS)     $(SRC) -o demo_$(CXX)
+	$(CXX) $(CFLAGS_DBG) $(SRC) -o demo_$(CXX)_debug
 
 clean:
-	rm -f demo demo_debug
+	rm -f demo_gcc demo_gcc_debug demo_clang demo_clang_debug demo_$(CXX) demo_$(CXX)_debug
