@@ -7,11 +7,16 @@ A small bunch of C++14 headers which can come handy !
 
 C++14 compliant compiler such as :
 
-* [GCC](https://gcc.gnu.org/projects/cxx1y.html) >= 5 
-* [Clang](http://clang.llvm.org/cxx_status.html) >=3.4
+* [GCC](https://gcc.gnu.org/projects/cxx1y.html) >= 4.8.1
+* [Clang](http://clang.llvm.org/cxx_status.html) >= 3.4
+
+
+### Usage
+
+Just copy the `coin` folder in your project and `#include "coin/coin"` whenever needed !  
+Examples are available in `demo.cpp` just type `make` or `make debug`.  
 
 ### Features
-
 
 #### Pretty print
 
@@ -114,6 +119,8 @@ Helper functions to wrap vectors elements into vector of smart pointers `coin::m
 > 3.141593
 > max(3,-2.0,6.4,6)=6.400000
 > 4+5-3=6
+
+
 
 
 #### TODO
