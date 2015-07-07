@@ -5,7 +5,7 @@ compiler:
   - clang
 install:
 - if [ "$CXX" = "g++" ]; then export CXX="g++-5"; fi
-- if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.5"; fi
+- if [ "$CXX" = "clang++" ]; then export CXX="clang-3.5"; fi
 addons:
   apt:
     sources:
@@ -17,6 +17,6 @@ addons:
 script: 
   - $CXX --version 
   - if [ "$CXX" = "gcc++-5" ]; then make gcc; fi
-  - if [ "$CXX" = "clang++-3.5" ]; then make clang; fi
+  - if [ "$CXX" = "clang-3.5" ]; then make clang; fi
 notifications:
   email: false
