@@ -15,8 +15,8 @@ C++14 compliant compiler such as :
 
 ### Usage
 
-Just copy the `coin` folder in your project and `#include "coin/coin"` whenever needed !  
-Examples are available in `demo.cpp` just type `make g++` or `make clang++`.  
+Just copy the `include/coin` folder in your project and add `#include "coin/coin"` in your source files whenever needed !  
+Examples are available in `demo.cpp` and compilable with `make gcc` or `make clang`.  
 
 ### Features
 
@@ -98,12 +98,12 @@ When not compiling with `-DNDEBUG` flag the debug macros are working :
 	};
 	Foo foo;
 	foo.bar();
-	coin_assert(2>4,"hello");
+	coin_assert(2>4,"this message is for assertion debug");
 ```
 
 > [debug] This is a test and n=4  
 > [debug] bar() in demo.cpp:65  
-> demo: demo.cpp:73: void demo_debug(): Assertion `2>4 && "this message is for assertion debug"' failed.
+> demo: demo.cpp:73: void demo_debug(): Assertion `2>4 && "this message is for assertion debug"` failed.
 
 #### And much more
 

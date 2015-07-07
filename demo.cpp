@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <chrono>
 #include <thread>
+#include <map>
 
 #include "coin/coin"
 
@@ -13,9 +14,20 @@ void demo_pretty_print() {
 	std::generate(v1.begin(), v1.end(), [](){static int n{0}; return n ++;});
 	std::cout << v1 << std::endl;
 
+
 	std::vector<std::vector<double>> v2{{1.4,4.3,2.4},{2.0,42.1},{1.4}};
 	std::cout << v2 << std::endl;
-}
+
+	std::vector<std::vector<std::string>> v3{{"Jess","Samuel","Simon"},{"Natacha","Claudia"},{"Bradd"}};
+	std::cout << v3 << std::endl;
+
+	std::map<std::string, int> students;
+
+	students["John"]=12;
+	students["Paul"]=14;
+	students["Elton"]=10;
+	std::cout << students << std::endl;
+	}
 
 void demo_timer_and_random() {
 	using coin::operator<<; // using the pretty print feature
