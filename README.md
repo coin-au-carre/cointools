@@ -7,7 +7,7 @@ A small bunch of C++14 headers which can come handy !
 
 C++14 compliant compiler such as :
 
-* [GCC](https://gcc.gnu.org/projects/cxx1y.html) >= 4.8.1
+* [GCC](https://gcc.gnu.org/projects/cxx1y.html) >= 5
 * [Clang](http://clang.llvm.org/cxx_status.html) >= 3.4
 
 
