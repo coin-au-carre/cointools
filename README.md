@@ -10,7 +10,7 @@ A small bunch of C++14 headers which can come handy !
 C++14 compliant compiler such as :
 
 * [GCC](https://gcc.gnu.org/projects/cxx1y.html) >= 5
-* [Clang](http://clang.llvm.org/cxx_status.html) >= 3.4
+* [Clang](http://clang.llvm.org/cxx_status.html) >= 3.5
 
 
 ### Usage
@@ -51,7 +51,7 @@ Some generic and fast convenient functions such as `template<class Container> co
 	std::cout << "After : " << v << std::endl;
 ```
 
-> Before : [4;3;5;7;4;7;2;3]
+> Before : [4;3;5;7;4;7;2;3]  
 > After  : [2;3;4;5;7]
 
 
@@ -78,9 +78,9 @@ Some generic and fast convenient functions such as `template<class Container> co
 	}
 ```
 
-> [0.983796;0.763911;0.574967;0.107476;0.228597;0.289640;0.221243;0.346670]
-> [Timer] 100 #
-> [97;29;-5;-86;-17;-24;85;8]
+> [0.983796;0.763911;0.574967;0.107476;0.228597;0.289640;0.221243;0.346670]  
+> [Timer] 100 #  
+> [97;29;-5;-86;-17;-24;85;8]  
 > [TimerFunc] 101 ms
 
 #### Debug utilities
@@ -101,8 +101,8 @@ When not compiling with `-DNDEBUG` flag the debug macros are working :
 	coin_assert(2>4,"hello");
 ```
 
-> [debug] This is a test and n=4
-> [debug] bar() in demo.cpp:65
+> [debug] This is a test and n=4  
+> [debug] bar() in demo.cpp:65  
 > demo: demo.cpp:73: void demo_debug(): Assertion `2>4 && "this message is for assertion debug"' failed.
 
 #### And much more
@@ -118,10 +118,9 @@ Helper functions to wrap vectors elements into vector of smart pointers `coin::m
 	std::cout << "4+5-3=" << coin::sum(4,5,-3) << std::endl;
 ```
 
-> 3.141593
-> max(3,-2.0,6.4,6)=6.400000
+> 3.141593  
+> max(3,-2.0,6.4,6)=6.400000  
 > 4+5-3=6
-
 
 
 
