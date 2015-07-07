@@ -4,19 +4,18 @@ compiler:
   - gcc
   - clang
 install:
-- if [ "$CXX" = "g++" ]; then export CXX="g++-5"; fi
-- if [ "$CXX" = "clang++" ]; then export CXX="clang-3.5"; fi
+- if [ "$CXX" = "g++" ]; then export CXX="g++-5" BUILD="gcc"; fi
+- if [ "$CXX" = "clang++" ]; then export CXX="clang++" BUILD="clang"; fi
 addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
+  # apt:
+    # sources:
+    # - ubuntu-toolchain-r-test
     packages:
     - gcc-5
     - g++-5
     - clang-3.5
 script: 
   - $CXX --version 
-  - if [ "$CXX" = "gcc++-5" ]; then make gcc; fi
-  - if [ "$CXX" = "clang-3.5" ]; then make clang; fi
+  - make $BUILD
 notifications:
   email: false
