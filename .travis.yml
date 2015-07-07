@@ -7,9 +7,10 @@ install:
 - if [ "$CXX" = "g++" ]; then export CXX="g++-5" BUILD="gcc"; fi
 - if [ "$CXX" = "clang++" ]; then export CXX="clang++" BUILD="clang"; fi
 addons:
-  # apt:
-    # sources:
-    # - ubuntu-toolchain-r-test
+  apt:
+    sources:
+    - llvm-toolchain-precise-3.5
+    - ubuntu-toolchain-r-test
     packages:
     - gcc-5
     - g++-5
