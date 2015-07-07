@@ -1,3 +1,4 @@
+CC=$(CXX)
 CC_gcc=g++
 CC_clang=clang++
 CFLAGS=-I./include/ -Wall -pedantic -Wextra -std=c++14 -DNDEBUG -O2
@@ -12,3 +13,6 @@ clang:
 	$(CC_clang) $(CFLAGS) demo.cpp -o demo
 	$(CC_clang) $(CFLAGS_DEBUG) demo.cpp -o demo_debug
 
+$(CXX):
+	$(CXX) $(CFLAGS) demo.cpp -o demo_gcc
+	$(CXX) $(CFLAGS_DEBUG) demo.cpp -o demo_debug
