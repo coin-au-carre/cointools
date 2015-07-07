@@ -7,7 +7,7 @@ CFLAGS_DEBUG=-I./include/ -Wall -pedantic -Wextra -std=c++14
 
 
 all: 
-	@echo Use make gcc or make clang
+	@echo Use `make gcc` or `make clang`
 
 gcc:
 	$(CC_gcc) $(CFLAGS) demo.cpp -o demo

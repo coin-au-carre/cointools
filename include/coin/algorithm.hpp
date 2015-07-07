@@ -1,14 +1,64 @@
 #pragma once
 
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <utility>
+
 namespace coin {
 
 namespace _impl_algorithm {
 
-template<class Container, class Functor>
-void generate(Container cont, Functor func) {
-	using std::begin;
-	using std::endl;
-	std::generate(begin(cont), end(cont), func);
+template<typename T, size_t Size> T* begin(T (& array)[Size]) { return array; } 
+template<typename T, size_t Size> T* end  (T (& array)[Size]) { return array + Size; } 
+
+template<typename T, size_t N>
+constexpr size_t get_size_of_array(T(&)[N]) {
+	return N;
+}
+
+// or call std::vector<T>(data, get_size_of_array(data));
+template< typename T, size_t N>
+std::vector<T> make_vector_from_array(const T (&data)[N]) {
+    return std::vector<T>(data, data+N);
+}
+
+template<typename Container>
+void remove_duplicate(Container& cont) {
+	using std::begin; using std::end;
+	std::sort(begin(cont), end(cont));
+	cont.erase(unique(begin(cont), end(cont)), end(cont));
+}
+
+template<typename T, typename Alloc>
+void remove_element(std::vector<T,Alloc> vec, const T& element) {
+	vec.erase(std::remove(vec.begin(), vec.end(), element), vec.end());
+}
+
+template<class K, class T, class Comp, class Alloc> 
+void remove_element(std::map<K,T,Comp,Alloc>& m, const std::pair<K,T>& p) {
+	typename std::map<K,T,Comp,Alloc>::iterator it = m.begin();
+	while (it != m.end()) {
+		if (it->first == p.first && it->second == p.second) {
+			it = m.erase(it);
+		} 
+		else {
+			++ it;
+		}
+	}
+}
+
+template<class K, class T, class Comp, class Alloc> 
+void remove_element(std::map<K,T,Comp,Alloc>& m, const K& k) {
+	typename std::map<K,T,Comp,Alloc>::iterator it = m.begin();
+	while (it != m.end()) {
+		if (it->first == k) {
+			it = m.erase(it);
+		} 
+		else {
+			++ it;
+		}
+	}
 }
 
 template<typename T> 
@@ -43,7 +93,11 @@ T sum(T x, Ts... xs) { return x + sum(xs...); }
 
 } // namespace _impl_algorithm
 
-using _impl_algorithm::generate;
+using _impl_algorithm::begin;
+using _impl_algorithm::end;
+using _impl_algorithm::get_size_of_array;
+using _impl_algorithm::remove_duplicate;
+using _impl_algorithm::remove_element;
 using _impl_algorithm::min;
 using _impl_algorithm::max;
 using _impl_algorithm::sum;

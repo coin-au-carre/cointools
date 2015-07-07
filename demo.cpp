@@ -26,6 +26,7 @@ void demo_pretty_print() {
 	students["John"]=12;
 	students["Paul"]=14;
 	students["Elton"]=10;
+	coin::remove_element(students, std::string{"Paul"});
 	std::cout << students << std::endl;
 	}
 
@@ -62,10 +63,14 @@ void demo_vector_smart_ptr() {
 
 void demo_functional() {
 	using coin::operator<<;
-	std::vector<int> v{4,3,5,7,4,7,2,3};
-	std::cout << "Before : " << v << std::endl;
+	int array[] = {4,3,5,7,4,7,2,3};
+	std::cout << "Original : ";
+	for(auto el = coin::begin(array); el != coin::end(array); el ++) { std::cout << *el << ";"; } // begin, end for plain array
+	std::vector<int> v{array, array + coin::get_size_of_array(array)}; // or auto v = coin::make_vector_from_array(array);
+	coin::remove_element(v, 7);
+	std::cout << "\nAfter remove_element(v,7) : " << v << std::endl;
 	coin::remove_duplicate(v);
-	std::cout << "After  : " << v << std::endl;
+	std::cout << "After remove_duplicate : " << v << std::endl;
 }	
 
 void demo_compile_time() {

@@ -59,19 +59,6 @@ std::string to_string(const std::pair<U,V>& p) {
 
 // for nested containers
 
-// template <typename T>
-// struct has_cont {
-// 	static const bool value = false;
-// };
-
-// template <typename T,typename Alloc>
-// struct has_cont<std::vector<T,Alloc>> {
-// 	static const bool value = true;
-// };
-
-// template <typename T>
-// using is_pair = std::is_same<T,std::pair<typename T::first_type, typename T::second_type>>;
-
 template<class T> struct is_container : public std::false_type {};
 
 template<class T, class Alloc> 

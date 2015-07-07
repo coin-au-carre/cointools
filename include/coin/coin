@@ -6,7 +6,7 @@
 #include "algorithm.hpp"
 #include "constant.hpp"
 #include "debug.hpp"
-#include "functional.hpp"
+#include "factory.hpp"
 
 #ifndef COIN_DISABLE_PRETTY_PRINT
 #include "pretty_print.hpp"

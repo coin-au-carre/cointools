@@ -20,6 +20,8 @@ Examples are available in `demo.cpp` and compilable with `make gcc` or `make cla
 
 ### Features
 
+Coin Tools comes with cool features which are illustrated [here](https://github.com/coin-au-carre/cointools/blob/master/demo.cpp) !
+
 #### Pretty print
 
 You can print some STL containers such as `std::vector` directly. 
@@ -45,15 +47,18 @@ You can even print nested containers !
 Some generic and fast convenient functions such as `template<class Container> coin::remove_duplicate(Container&)` :
  
 ```c++
-	std::vector<int> v{4,3,5,7,4,7,2,3};
-	std::cout << "Before : " << v << std::endl;
+	int array[] = {4,3,5,7,4,7,2,3};
+	for(auto el = coin::begin(array); el != coin::end(array); el ++) { std::cout << *el << ";"; } // begin, end for plain array
+	std::vector<int> v{array, array + coin::get_size_of_array(array)}; // or auto v = coin::make_vector_from_array(array);
+	coin::remove_element(v, 7);
+	std::cout << "\nAfter remove_element(v,7) : " << v << std::endl;
 	coin::remove_duplicate(v);
-	std::cout << "After : " << v << std::endl;
+	std::cout << "After remove_duplicate : " << v << std::endl;
 ```
 
-> Before : [4;3;5;7;4;7;2;3]  
-> After  : [2;3;4;5;7]
-
+> 4;3;5;7;4;7;2;3;  
+> After remove_element(v,7) : [4;3;5;7;4;7;2;3]  
+> After remove_duplicate : [2;3;4;5;7]
 
 
 #### Convenient timers, randomizers
@@ -107,8 +112,8 @@ When not compiling with `-DNDEBUG` flag the debug macros are working :
 
 #### And much more
 
-Compile time constants and computations (min, max, sum) taking variadic arguments `coin::min(1.0,5,-7.5f)`.  
-Helper functions to wrap vectors elements into vector of smart pointers `coin::make_vector_unique(const std::vector&)`.
+* Compile time constants and computations (min, max, sum) taking variadic arguments `coin::min(1.0,5,-7.5f)`.  
+* Helper functions to wrap vectors elements into vector of smart pointers `coin::make_vector_unique(const std::vector&)`.
 
 ```c++
 	auto x = coin::pi<float>();
@@ -134,4 +139,4 @@ This is an ongoing work.
 
 #### License
 
-This projected is licensed under the terms of the MIT license.
+This project is licensed under the terms of the MIT license.

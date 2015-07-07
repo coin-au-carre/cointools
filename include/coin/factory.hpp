@@ -2,26 +2,10 @@
 
 #include <memory>
 #include <vector>
-#include <algorithm>
 
 namespace coin {
 
 namespace _impl_functional {
-
-template<typename T, size_t Size> T* begin(T (& array)[Size]) { return array; } 
-template<typename T, size_t Size> T* end  (T (& array)[Size]) { return array + Size; } 
-
-template<typename T, size_t N>
-constexpr size_t get_size_of_array(T(&)[N]) {
-	return N;
-}
-
-template<class Container>
-void remove_duplicate(Container& cont) {
-	using std::begin; using std::end;
-	std::sort(begin(cont), end(cont));
-	cont.erase(unique(begin(cont), end(cont)), end(cont));
-}
 
 template <class T>
 auto make_shared_vector(const std::vector<T>& v) {
@@ -48,7 +32,5 @@ auto make_unique_vector(const std::vector<T>& v) {
 
 using _impl_functional::make_shared_vector;
 using _impl_functional::make_unique_vector;
-using _impl_functional::remove_duplicate;
-using _impl_functional::get_size_of_array;
 
 } // namespace coin
