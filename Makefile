@@ -4,7 +4,7 @@ CC_clang=clang++
 CFLAGS=-I./include/ -Wall -pedantic -Wextra -std=c++14 -DNDEBUG -O2
 
 CFLAGS_DBG=-I./include/ -Wall -pedantic -Wextra -std=c++14
-SRC=demo/demo.cpp
+SRC=demo_example/demo.cpp
 
 gcc:
 	$(CC_gcc) $(CFLAGS)     $(SRC) -o demo_gcc

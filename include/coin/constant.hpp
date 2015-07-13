@@ -9,10 +9,19 @@ namespace coin {
 namespace _impl_constant {
 
 template<typename T>
-constexpr T k_infinity      = std::numeric_limits<T>::infinity();
+constexpr T k_infinity = std::numeric_limits<T>::infinity();
 
 template<typename T>
-constexpr T k_epsilon       = std::numeric_limits<T>::epsilon();
+constexpr T k_epsilon  = std::numeric_limits<T>::epsilon();
+
+template<typename T>
+constexpr T k_min      = std::numeric_limits<T>::min();
+
+template<typename T>
+constexpr T k_lower    = std::numeric_limits<T>::lower();
+
+template<typename T>
+constexpr T k_max      = std::numeric_limits<T>::max();
 
 #if defined(__clang__)
 
@@ -42,6 +51,9 @@ void set_max_decimal_digits() {
 
 using _impl_constant::k_infinity;
 using _impl_constant::k_epsilon;
+using _impl_constant::k_min;
+using _impl_constant::k_lower;
+using _impl_constant::k_max;
 using _impl_constant::pi;
 using _impl_constant::deg_to_rad;
 using _impl_constant::set_max_decimal_digits;

@@ -16,8 +16,14 @@ C++14 compliant compiler such as :
 ### Usage
 
 Just copy the `include/coin` folder in your project and add `#include "coin/coin"` in your source files whenever needed !  
-Many cool features are illustrated [here](https://github.com/coin-au-carre/cointools/blob/master/demo/demo.cpp).  
-Compile examples with `make gcc` or `make clang`.
+The following Subversion command will copy the last `coin` folder with the most recent header files.   
+```sh
+svn export https://github.com/coin-au-carre/cointools/trunk/include/coin/
+``` 
+
+You can also `git clone`  the whole project.  
+Many cool features are illustrated in [demo.cpp](https://github.com/coin-au-carre/cointools/blob/master/demo/demo.cpp).  
+Compile the examples with `make gcc` or `make clang`.  
 
 ### Features
 

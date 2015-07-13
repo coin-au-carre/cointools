@@ -76,6 +76,17 @@ void demo_compile_time() {
 	std::cout << "4+5-3=" << coin::sum(4,5,-3) << std::endl;
 }
 
+
+void demo_multi_dim_counter() {
+	using coin::operator<<;
+	const std::vector<int> lower_bound({-4,-1,1});
+	const std::vector<int> upper_bound({-3,1,2});
+	std::vector<int> current = lower_bound;
+	do {
+		std::cout << current << std::endl;
+	} while (coin::multi_dim_counter(current, lower_bound, upper_bound));
+}
+
 void demo_debug() {
 	struct Foo {
 		Foo() : n{4} {}
@@ -89,18 +100,10 @@ void demo_debug() {
 	};
 	Foo foo;
 	foo.bar();
+	coin::CheckCompileTime<coin::k_max<int>> out;
 	coin_assert(2>4,"this message is for assertion debug");
 }
 
-void demo_multi_dim_counter() {
-	using coin::operator<<;
-	const std::vector<int> lower_bound({-4,-1,1});
-	const std::vector<int> upper_bound({-3,1,2});
-	std::vector<int> current = lower_bound;
-	do {
-		std::cout << current << std::endl;
-	} while (coin::multi_dim_counter(current, lower_bound, upper_bound));
-}
 
 int main() {
 	demo_pretty_print();
@@ -108,6 +111,6 @@ int main() {
 	demo_vector_smart_ptr();
 	demo_compile_time();
 	demo_functional();
-	demo_debug();
 	demo_multi_dim_counter();
+	demo_debug();
 }
