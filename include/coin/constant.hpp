@@ -36,7 +36,17 @@ constexpr T pi() { return std::atan(1)*4; } // non standard but GCC permits it
 #endif
 
 template<typename T>
-constexpr T deg_to_rad(T deg) {
+constexpr T sqrt(const T x, const T epsilon = k_epsilon<T>) {
+	T s = x, s0 = 1.0;
+	while (std::abs(s - s0) > epsilon) {
+		s0 = s;
+		s = 0.5 * (s + x/s);
+	}
+	return s;
+}
+
+template<typename T>
+constexpr T deg_to_rad(const T deg) {
 	return deg * pi<T>() / 180.0;
 }
 
@@ -46,7 +56,6 @@ void set_max_decimal_digits() {
 	<< std::setprecision(std::numeric_limits<T>::digits10);
 }
 
-
 } // namespace _impl_constant
 
 using _impl_constant::k_infinity;
@@ -55,6 +64,7 @@ using _impl_constant::k_min;
 using _impl_constant::k_lower;
 using _impl_constant::k_max;
 using _impl_constant::pi;
+using _impl_constant::sqrt;
 using _impl_constant::deg_to_rad;
 using _impl_constant::set_max_decimal_digits;
 

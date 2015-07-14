@@ -12,6 +12,7 @@
 #include "pretty_print.hpp"
 #endif
 
+#include "numeric.hpp"
 #include "random.hpp"
 #include "timer.hpp"
 

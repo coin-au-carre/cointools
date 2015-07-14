@@ -74,6 +74,12 @@ void demo_compile_time() {
 	std::cout << x << std::endl;
 	std::cout << "max(3,-2.0,6.4,6)=" << coin::max(3,-2.0,6.4,6) << std::endl;
 	std::cout << "4+5-3=" << coin::sum(4,5,-3) << std::endl;
+	std::array<int,4> u{1,2,3,4}; // also work with plain C-array
+	std::array<int,4> v{4,2,3,2};
+	auto w = coin::meta_dot_product(u,v);
+	std::cout << "coin::dot_product=" << w << std::endl;
+	std::cout << "coin::sqrt(16)=";
+	coin::CheckCompileTime<coin::sqrt(16)> out;
 }
 
 

@@ -13,8 +13,7 @@ template<class ...> using void_t = void;
 
 // for classes which own a `to_string` method
 template<typename T, typename = void>
-struct has_to_string
-: std::false_type { };
+struct has_to_string : std::false_type { };
 
 template<typename T>
 struct has_to_string<T, 
