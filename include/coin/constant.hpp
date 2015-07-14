@@ -35,10 +35,15 @@ constexpr T pi() { return std::atan(1)*4; } // non standard but GCC permits it
 
 #endif
 
+template<class T>
+constexpr T abs(T x){
+	return x < 0 ? -x : x;
+}
+
 template<typename T>
 constexpr T sqrt(const T x, const T epsilon = k_epsilon<T>) {
 	T s = x, s0 = 1.0;
-	while (std::abs(s - s0) > epsilon) {
+	while (abs(s - s0) > epsilon) {
 		s0 = s;
 		s = 0.5 * (s + x/s);
 	}
@@ -64,6 +69,7 @@ using _impl_constant::k_min;
 using _impl_constant::k_lower;
 using _impl_constant::k_max;
 using _impl_constant::pi;
+using _impl_constant::abs;
 using _impl_constant::sqrt;
 using _impl_constant::deg_to_rad;
 using _impl_constant::set_max_decimal_digits;

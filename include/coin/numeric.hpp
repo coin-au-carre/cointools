@@ -32,9 +32,6 @@ struct DotProduct<1,T> {
 	}
 };
 
-// // template <size_t N, class T> 
-// // inline T dot_product(const std::vector<T>& a, const std::vector<T>& b)  { return DotProduct<N, T>::eval(a.data(),b.data()); }
-
 template <size_t N, class T> 
 inline T meta_dot_product(const T* a, const T* b)  { return DotProduct<N, T>::eval(a, b); }
 
