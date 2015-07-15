@@ -104,7 +104,7 @@ template<typename T>
 constexpr T max(T a, T b ) { return a < b ? b : a; }
 
 template <typename T>
-inline T    max(const T& t) { return t; }
+inline    T max(const T& t) { return t; }
 
 template <typename T, typename ...P>
 inline auto max(const T& t, const P& ...p) {
