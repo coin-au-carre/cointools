@@ -25,6 +25,7 @@ void demo_pretty_print() {
 	std::cout << students << std::endl;
 }
 
+
 void demo_timer_and_random() {
 	using coin::operator<<; // using the pretty print feature
 	{
@@ -44,6 +45,7 @@ void demo_timer_and_random() {
 		std::cout << "[TimerFunc] " << coin::TimerFunc<>::exec<void(void)>(lambda) << " ms" << std::endl;
 	}
 }
+
 
 void demo_vector_smart_ptr() {
 	std::vector<int> v(6);
@@ -67,6 +69,7 @@ void demo_functional() {
 	coin::remove_duplicate(v);  // remove all redundant elements
 	std::cout << "After remove_duplicate : " << v << std::endl;
 }	
+
 
 void demo_compile_time() {
 	auto x = coin::pi<float>();
@@ -106,7 +109,7 @@ void demo_debug() {
 	};
 	Foo foo;
 	foo.bar();
-	std::cout << "compile time check for k_max<int> :";
+	std::cout << "compile time check for k_max<int> : ";
 	coin::CheckCompileTime<coin::k_max<int>> test;
 	coin_assert(2>4,"this message is for assertion debug");
 }

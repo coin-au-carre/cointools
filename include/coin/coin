@@ -12,8 +12,10 @@
 #include "pretty_print.hpp"
 #endif
 
+#include "math.hpp"
 #include "numeric.hpp"
 #include "random.hpp"
 #include "timer.hpp"
+#include "type_list.hpp"
 
 #endif // COINTOOLS_HPP_
