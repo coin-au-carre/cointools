@@ -5,6 +5,7 @@
 #include <chrono>
 #include <thread>
 #include <map>
+#include <numeric> // std::iota
 
 #include "coin/coin"
 
@@ -115,6 +116,26 @@ void demo_debug() {
 }
 
 
+void demo_matrix() {
+	using std::begin;  using std::end;
+	coin::MatrixHeap<float> mat(4,3);
+	std::iota(begin(mat),end(mat), -4);
+	std::cout << mat << std::endl;
+	std::cout << mat(3,1) << std::endl; 
+	std::cout << mat[{3,3}] << std::endl; // out of range nothrow here 
+	// std::cout << mat.at(3,3) << std::endl; // at() throws an exception
+	std::cout << mat[3] << std::endl;
+
+	coin::MatrixStack<int,2> mat_static{{{1,2,3,4}}};
+	std::cout << mat_static << std::endl;
+
+	coin::MatrixHeapRaw<float> raw_mat(4,5);
+//	std::iota(raw_mat.begin(), raw_mat.end(), -4);
+//	for(const auto& a : raw_mat) 
+//		std::cout << a << std::endl;
+	//std::cout << raw_mat << std::endl;
+}
+
 int main() {
 	demo_pretty_print();
 	demo_timer_and_random();
@@ -122,5 +143,6 @@ int main() {
 	demo_compile_time();
 	demo_functional();
 	demo_multi_dim_counter();
+	demo_matrix();
 	demo_debug();
 }

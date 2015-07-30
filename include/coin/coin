@@ -13,6 +13,7 @@
 #endif
 
 #include "math.hpp"
+#include "matrix/matrix.hpp"
 #include "numeric.hpp"
 #include "random.hpp"
 #include "timer.hpp"

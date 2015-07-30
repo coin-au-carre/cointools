@@ -21,7 +21,7 @@ constexpr size_t get_size_of_array(T(&)[N]) {
 // or call std::vector<T>(data, get_size_of_array(data));
 template< typename T, size_t N>
 std::vector<T> make_vector_from_array(const T (&data)[N]) {
-    return std::vector<T>(data, data+N);
+	return std::vector<T>(data, data+N);
 }
 
 template<typename Container>
@@ -64,7 +64,7 @@ void remove_element(std::map<K,T,Comp,Alloc>& m, const K& k) {
 
 template<class ForwardIt, class T>
 T lower_bound_index(ForwardIt first, ForwardIt last, const T& value) {
-    return (std::lower_bound (first, last, value) - first);
+	return (std::lower_bound (first, last, value) - first);
 }
 
 template<class ForwardIt, class T>
