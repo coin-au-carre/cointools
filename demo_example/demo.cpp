@@ -143,7 +143,7 @@ void demo_matrix() {
 	std::iota(begin(mat),end(mat), -4);
 	std::cout << mat << std::endl;
 	std::cout << mat(3,1) << std::endl; 
-	std::cout << mat[{3,3}] << std::endl; // out of range nothrow here 
+	std::cout << mat[{{3,3}}] << std::endl; // out of range nothrow here 
 	// std::cout << mat.at(3,3) << std::endl; // at() throws an exception
 	std::cout << mat[3] << std::endl;
 

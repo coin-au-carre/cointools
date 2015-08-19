@@ -4,6 +4,7 @@
 #include "config.hpp"
 
 #include "algorithm.hpp"
+#include "color.hpp"
 #include "constant.hpp"
 #include "debug.hpp"
 #include "factory.hpp"

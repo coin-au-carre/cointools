@@ -14,8 +14,15 @@
 #include <cassert>
 
 #ifndef NDEBUG
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
+#endif
 #define coin_debug_print(msg, ...) \
 	do { fprintf(stdout, "[debug] " msg "\n", ##__VA_ARGS__); } while(0)
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
 #define coin_debug_info()          \
 	do { std::cout << "[debug] " << __FUNCTION__ << \
 	"() in " << __FILE__ << ":" << __LINE__ << std::endl; } while(0)
@@ -32,7 +39,6 @@
 namespace coin {
 
 namespace _impl_debug {
-
 
 // output function that requires a compile-time constant for testing
 template<int N> struct CheckCompileTime {
