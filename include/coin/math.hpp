@@ -47,7 +47,7 @@ template<typename T, typename E>
 constexpr T meta_pow(T base, E expo) { return (expo != 0 ) ? base * meta_pow(base, expo-1) : 1; }
 
 template<class T>
-constexpr T abs(T x){
+constexpr T abs(T x) {
 	return x < 0 ? -x : x;
 }
 

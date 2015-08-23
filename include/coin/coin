@@ -15,7 +15,7 @@
 
 #include "math.hpp"
 #include "matrix/matrix.hpp"
-#include "multi_grid.hpp"
+#include "multigrid/multigrid_hashmap.hpp"
 #include "numeric.hpp"
 #include "random.hpp"
 #include "timer.hpp"
