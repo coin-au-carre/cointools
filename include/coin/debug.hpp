@@ -14,13 +14,13 @@
 #include <cassert>
 
 #ifndef NDEBUG
-#ifdef __clang__
+#if defined(__clang__)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
 #endif
 #define coin_debug_print(msg, ...) \
 	do { fprintf(stdout, "[debug] " msg "\n", ##__VA_ARGS__); } while(0)
-#ifdef __clang__
+#if defined(__clang__)
 #pragma clang diagnostic pop
 #endif
 #define coin_debug_info()          \

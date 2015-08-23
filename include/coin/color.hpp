@@ -21,7 +21,7 @@ struct RGB {
 struct Color {
 	uint32_t  color;
 
-	Color() : color{} {} // non-class value-initialization, value is 0
+	Color() : color{} {}
 	Color(const uint8_t red, const uint8_t green, const uint8_t blue)
 		: color{((red % k_max_color) << 16) + ((green % k_max_color) << 8) + (blue % k_max_color)}
 		{}
