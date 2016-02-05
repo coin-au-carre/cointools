@@ -8,6 +8,7 @@
 #include "constant.hpp"
 #include "debug.hpp"
 #include "factory.hpp"
+//#include "logger.hpp"
 
 #ifndef COIN_DISABLE_PRETTY_PRINT
 #include "pretty_print.hpp"
@@ -17,6 +18,7 @@
 #include "matrix/matrix.hpp"
 #include "multigrid/multigrid_hashmap.hpp"
 #include "numeric.hpp"
+#include "pimpl.hpp"
 #include "random.hpp"
 #include "timer.hpp"
 #include "type_list.hpp"
