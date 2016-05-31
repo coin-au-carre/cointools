@@ -9,28 +9,6 @@
 
 #include "coin/coin"
 
-void demo_multi_grid() {
-	using coin::operator<<;
-	// Create a 4D grid with 3x2x3x5 vertices
-	coin::MultiGrid<float,3,2,3,5> grid;
-	// grid behaves like a STL container and we can fill values with std::generate
-	std::generate(grid.begin(), grid.end(), [](){ static float n{0.0f}; return n+=0.5f; } );
-	std::cout << grid << std::endl;
-
-	// get coordinates from index
-	std::cout << "get_coord_from_index(43) = " << grid.get_coord_from_index(43) << std::endl;
-	// and vice versa
-	std::cout << "get_index_from_coord({{2,0,2,3}}) = " << grid.get_index_from_coord({{2,0,2,3}}) << std::endl;
-	// print value at specific coordinates
-	std::cout << "Grid[{{2,0,2,3}}] = " << grid[{{2,0,2,3}}] << std::endl;
-	// print value at specific index
-	std::cout << "Grid[42] = " << grid[42] << "\n\n";
-
-	coin::MultiGrid<float, 2, 2> little_grid;
-	std::cout << little_grid << std::endl;
-
-	std::cout << "sizeof(MultiGrid<5,int,2,2,2,2,2>) = " << sizeof(coin::MultiGrid<int,2,2,2,2,2>) << std::endl;
-}
 
 void demo_pretty_print() {
 	using coin::operator<<; // using the pretty print feature
@@ -160,7 +138,6 @@ void demo_matrix() {
 }
 
 int main() {
-	demo_multi_grid();
 	demo_pretty_print();
 	demo_timer_and_random();
 	demo_vector_smart_ptr();
