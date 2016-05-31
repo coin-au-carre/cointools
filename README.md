@@ -1,7 +1,9 @@
 Coin Tools
 ----------
 
-A small bunch of C++14 headers which can come in handy !
+A small bunch of C++14 headers which can come in handy ! 
+
+__Warning__ this project is a bunch of stuff I use or have used at a moment. It does not pretend to be used as a library. 
 
 [![Build Status](https://travis-ci.org/coin-au-carre/cointools.svg?branch=master)](https://travis-ci.org/coin-au-carre/cointools)
 

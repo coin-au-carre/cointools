@@ -4,58 +4,78 @@
 #include <iostream>
 #include <string>
 
+#include "logger.hpp"
+
 namespace coin {
 
-namespace _impl_timer {
+namespace _detail_timer {
 
-template<typename TimeT = std::chrono::milliseconds>
+template<typename TimeT>
+std::string suffix_duration();
+
+// explicit full template specializations
+// the inlines are just a trick to tell the compiler not to define them multiple times
+template<> inline std::string suffix_duration<std::chrono::hours>()        { return "hours"; }
+template<> inline std::string suffix_duration<std::chrono::minutes>()      { return "min"; }
+template<> inline std::string suffix_duration<std::chrono::seconds>()      { return "s"; }
+template<> inline std::string suffix_duration<std::chrono::milliseconds>() { return "ms"; }
+template<> inline std::string suffix_duration<std::chrono::microseconds>() { return "\xC2\xB5s"; }
+template<> inline std::string suffix_duration<std::chrono::nanoseconds>()  { return "ns"; }
+
+
+template<LogLevel Level=coin::LogLevel::log_debug, typename TimeT = std::chrono::milliseconds>
 class Timer {
-	using clock = std::chrono::high_resolution_clock; 
-	clock::time_point begin_time_{clock::now()};
-	std::string label;
-	Timer(const Timer& timer) = delete;
+    using clock = std::chrono::high_resolution_clock; 
+    clock::time_point begin_time_{clock::now()};
+    std::string label;
 public:
-	Timer(const std::string& lbl = "") : label(lbl) {}
-	~Timer() {
-		auto duration = std::chrono::duration_cast<TimeT>(clock::now() - begin_time_);
-		std::cout << label  << "[Timer] " << duration.count() << " #" << std::endl;
-	}
+    Timer(const std::string& lbl = "") : label(lbl) {}
+    void end() const {
+        auto duration = std::chrono::duration_cast<TimeT>(clock::now() - begin_time_);
+        coin::_detail::Log<Level>(std::cout) << "[Timer] " 
+            << label  << " : " << duration.count() << " " << suffix_duration<TimeT>() <<"\n";
+    }
 };
 
-template<typename TimeT = std::chrono::milliseconds>
-class TimerStop {
-	using clock = std::chrono::high_resolution_clock;
-	bool is_running() const { return stop_time_ == clock::time_point::min(); }
-	clock::time_point end_time() const { return is_running() ? clock::now() : stop_time_; }
-	clock::time_point begin_time_{clock::now()}, stop_time_{clock::time_point::min()};
+
+template<LogLevel Level=coin::LogLevel::log_debug, typename TimeT = std::chrono::milliseconds>
+class TimerScope {
+    using clock = std::chrono::high_resolution_clock; 
+    clock::time_point begin_time_{clock::now()};
+    std::string label;
+    TimerScope(const TimerScope& timer) = delete;
 public:
-	void stop() { if (is_running()) stop_time_ = clock::now(); }
-	auto elapsed() const { return std::chrono::duration_cast<TimeT>(end_time() - begin_time_); }
-	auto count() const { return elapsed().count(); }
+    TimerScope(const std::string& lbl = "") : label(lbl) {}
+    ~TimerScope() {
+        auto duration = std::chrono::duration_cast<TimeT>(clock::now() - begin_time_);
+        coin::_detail::Log<Level>(std::cout) << "[Timer] " 
+            << label  << " : " << duration.count() << " " << suffix_duration<TimeT>() <<"\n";
+    }
 };
 
 
 //! Return the time elapsed for a specific function passed in argument
 /*
-	Usage : std::cout << TimerFunc<std::chrono::microseconds>::exec<bool(unsigned int)>(isPrime, 7);
+    Usage : std::cout << TimerFunc<std::chrono::microseconds>::exec<bool(unsigned int)>(isPrime, 7);
 */
 template<typename TimeT = std::chrono::milliseconds>
 struct TimerFunc {
-	using clock = std::chrono::high_resolution_clock;
-	template<typename F, typename ...Args>
-	static typename TimeT::rep exec(F func, Args&&... args) {
-		auto start = clock::now();
-		func(std::forward<Args>(args)...);
-		auto duration = std::chrono::duration_cast<TimeT>(clock::now() - start);
-		return duration.count();
-	}
+    using clock = std::chrono::high_resolution_clock;
+    template<typename F, typename ...Args>
+    static typename TimeT::rep exec(F func, Args&&... args) {
+        auto start = clock::now();
+        func(std::forward<Args>(args)...);
+        auto duration = std::chrono::duration_cast<TimeT>(clock::now() - start);
+        return duration.count();
+    }
 };
 
+} // ns _detail_timer
 
-} // namespace _impl_timer
+using _detail_timer::TimerScope;
+using _detail_timer::Timer;
+using _detail_timer::TimerFunc;
 
-using _impl_timer::Timer;
-using _impl_timer::TimerStop;
-using _impl_timer::TimerFunc;
+} // ns mq
 
-} // namespace coin
+

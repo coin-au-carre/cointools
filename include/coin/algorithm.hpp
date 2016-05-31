@@ -5,6 +5,7 @@
 #include <map>
 #include <utility>
 #include <cassert>
+#include <sstream>
 
 namespace coin {
 
@@ -88,7 +89,36 @@ bool multi_dim_counter(std::vector<T>& v, const std::vector<T>& lower, const std
 }
 
 
+inline
+std::vector<std::string> &split(std::string s, char delim, std::vector<std::string> &elems) {
+    std::stringstream ss(s);
+    std::string item;
+    while (std::getline(ss, item, delim)) {
+        elems.push_back(item);
+    }
+    return elems;
+}
+
+
 } // namespace _impl_algorithm
+
+
+//! Ignore unused parameter/variable
+template<class T> void ignore_unused_parameter( const T& ) { }
+
+//! Force explicit conversion on enum class underlying type
+template<typename E>
+constexpr auto to_integral(E e) -> typename std::underlying_type<E>::type {
+   return static_cast<typename std::underlying_type<E>::type>(e);
+}
+
+inline
+std::vector<std::string> split(const std::string &s, char delim) {
+    std::vector<std::string> elems;
+    _impl_algorithm::split(s, delim, elems);
+    return elems;
+}
+
 
 using _impl_algorithm::begin;
 using _impl_algorithm::end;

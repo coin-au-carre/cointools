@@ -1,6 +1,7 @@
 #pragma once
 
 #include <limits>
+#include <cmath>
 
 namespace coin {
 

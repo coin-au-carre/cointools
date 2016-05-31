@@ -7,10 +7,11 @@
 #include "color.hpp"
 #include "constant.hpp"
 #include "debug.hpp"
+#include "except.hpp"
 #include "factory.hpp"
-//#include "logger.hpp"
+#include "logger.hpp"
 
-#ifndef COIN_DISABLE_PRETTY_PRINT
+#if COIN_DISABLE_PRETTY_PRINT
 #include "pretty_print.hpp"
 #endif
 
