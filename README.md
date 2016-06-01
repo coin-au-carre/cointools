@@ -3,28 +3,10 @@ Coin Tools
 
 A small bunch of C++14 headers which can come in handy ! 
 
-__Warning__ this project is a bunch of stuff I use or have used at a moment. It does not pretend to be used as a library. 
+__Warning__ these are mostly drafts I (have) use(d). 
 
 [![Build Status](https://travis-ci.org/coin-au-carre/cointools.svg?branch=master)](https://travis-ci.org/coin-au-carre/cointools)
 
-### Requirements
-
-C++14 compliant compiler such as :
-
-* [GCC](https://gcc.gnu.org/projects/cxx1y.html) >= 5
-* [Clang](http://clang.llvm.org/cxx_status.html) >= 3.5
-
-
-### Usage
-
-Just copy the `include/coin` folder in your project and add `#include "coin/coin"` in your source files whenever needed !  
-The following Subversion command will copy the last `coin` folder with the most recent header files.   
-```sh
-svn export https://github.com/coin-au-carre/cointools/trunk/include/coin/
-``` 
-
-You can also `git clone`  the whole project. Many cool features are illustrated in [demo.cpp](https://github.com/coin-au-carre/cointools/blob/master/demo/demo.cpp).  
-Compile the examples with `make gcc` or `make clang`.  
 
 ### Features
 
@@ -146,18 +128,3 @@ std::cout << "4+5-3=" << coin::sum(4,5,-3) << std::endl;
 > 3.141593  
 > max(3,-2.0,6.4,6)=6.400000  
 > 4+5-3=6
-
-
-
-#### TODO
-
-This is an ongoing work. 
-
-* reduce compile time
-* better pretty print (nested array not working)
-* more tests
-
-
-#### License
-
-This project is licensed under the terms of the MIT license.
