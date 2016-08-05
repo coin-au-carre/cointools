@@ -14,12 +14,13 @@
 #include "pretty_print.hpp"
 #endif
 
+#include "magic_timer.hpp"
 #include "math.hpp"
 #include "matrix.hpp"
 #include "numeric.hpp"
 #include "pimpl.hpp"
 #include "random.hpp"
-#include "timer.hpp"
-#include "type_list.hpp"
+#include "semaphore.hpp"
+#include "thread_guard.hpp"
 
 #endif // COINTOOLS_HPP_

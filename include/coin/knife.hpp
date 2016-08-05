@@ -71,20 +71,6 @@ std::pair<double, double> process_mem_usage() {
    return {vm_usage, resident_set};
 }
 
-//! GOTW 101
-template<typename T>
-class pimpl {
-public:
-    pimpl() : ptr_{new T{}} {}
-    template<typename ...Args> pimpl(Args&& ... args) : ptr_{ new T{ std::forward<Args>(args)... } } { }
-    ~pimpl() {}
-    
-    T* operator->() const { return ptr_.get();  }
-    T& operator*()  const { return *ptr_.get(); }
-    
-private:
-    std::unique_ptr<T> ptr_;
-};
 
 //! System pause
 inline

@@ -6,17 +6,18 @@
 namespace coin {
 
 template<typename T>
-class pimpl_ptr {
+class pimpl 
+{
 public:
-	pimpl_ptr() : ptr_{new T{}} {}
-	template<typename ...Args> pimpl_ptr(Args&& ... args) : ptr_{ new T{ std::forward<Args>(args)... } } { }
-	~pimpl_ptr() {}
-	
-	T* operator->() const { return ptr_.get();  }
-	T& operator*() const { return *ptr_.get(); }
-	
+    pimpl() : ptr_{new T{}} {}
+    template<typename ...Args> pimpl(Args&& ... args) : ptr_{ new T{ std::forward<Args>(args)... } } { }
+    ~pimpl() {}
+    
+    T* operator->() const { return ptr_.get();  }
+    T& operator*()  const { return *ptr_.get(); }
+    
 private:
-	std::unique_ptr<T> ptr_;
+    std::unique_ptr<T> ptr_;
 };
 
 
