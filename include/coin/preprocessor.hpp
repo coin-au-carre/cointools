@@ -1,14 +1,8 @@
 #pragma once
 
-// turn A into a string literal 
-#define COIN_STRINGIZE_NX(A) #A
+#define COIN_STRINGIZE_DETAIL(A) #A
+#define COIN_STRINGIZE(A)    COIN_STRINGIZE_DETAIL(A)
+#define COIN_PPCAT_NX(A, B)  A ## B
+#define COIN_PPCAT(A, B)     COIN_PPCAT_NX(A, B)
 
-// after macro expansion
-#define COIN_STRINGIZE(A) STRINGIZE_NX(A)
-
-// concatenate preprocessor tokens A and B
-#define COIN_PPCAT_NX(A, B) A ## B
-
-// after macro expansion
-#define COIN_PPCAT(A, B) PPCAT_NX(A, B)
 

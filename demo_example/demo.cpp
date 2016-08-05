@@ -29,22 +29,23 @@ void demo_pretty_print() {
 
 
 void demo_timer_and_random() {
+	std::random_device rd;
+  	std::mt19937 gen{rd()};
+
 	using coin::operator<<; // using the pretty print feature
 	{
 		coin::Timer<> timer; // begin timer which will automatically end at end of scope
 		std::vector<float> v(8);
-		coin::uniform_randomizer(v); // fill v with random float values
+		coin::fill_random_uniform(v, gen); // fill v with random float values
 		std::this_thread::sleep_for (std::chrono::milliseconds(100));
 		std::cout << v << std::endl;
 	}
 	{
-		auto lambda = [] { 
-			std::vector<int> v(8);
-			coin::uniform_randomizer(v,-100,100); // fill v with random int values
-			std::cout << v << std::endl; 
-			std::this_thread::sleep_for (std::chrono::milliseconds(100));
-			};
-		std::cout << "[TimerFunc] " << coin::TimerFunc<>::exec<void(void)>(lambda) << " ms" << std::endl;
+		coin::Timer<> timer; // begin timer which will automatically end at end of scope
+		std::vector<int> v(8);
+		coin::fill_random_uniform(v,gen,-100,100); // fill v with random int values
+		std::cout << v << std::endl; 
+		std::this_thread::sleep_for (std::chrono::milliseconds(100));
 	}
 }
 

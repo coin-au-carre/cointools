@@ -22,15 +22,15 @@ struct connect_error : public std::runtime_error {
 
 }
 
-#ifdef GSL_THROW_ON_CONTRACT_VIOLATION
+// #ifdef GSL_THROW_ON_CONTRACT_VIOLATION
 #define Precondition(cond, msg)  if (!(cond)) \
     throw coin::fail_fast("GSL: Precondition failure at " __FILE__ ":" COIN_STRINGIZE(__LINE__)" ", msg);
 
 #define Postcondition(cond, msg) if (!(cond)) \
     throw coin::fail_fast("GSL: Postcondition failure at " __FILE__ ":" COIN_STRINGIZE(__LINE__)" ", msg);
-#else
-#define Precondition(cond, msg)  if (!(cond)) std::terminate();
-#define Postcondition(cond, msg) if (!(cond)) std::terminate();
+// #else
+// #define Precondition(cond, msg)  if (!(cond)) std::terminate();
+// #define Postcondition(cond, msg) if (!(cond)) std::terminate();
 
-#endif
+// #endif
 
