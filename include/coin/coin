@@ -19,6 +19,7 @@
 #include "matrix.hpp"
 #include "numeric.hpp"
 #include "pimpl.hpp"
+#include "pixmap.hpp"
 #include "random.hpp"
 #include "semaphore.hpp"
 #include "thread_guard.hpp"

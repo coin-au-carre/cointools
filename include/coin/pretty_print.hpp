@@ -5,6 +5,7 @@
 #include <type_traits>
 
 #include <map>
+#include <unordered_map>
 #include <array>
 #include <utility>
 #include <vector>
@@ -72,6 +73,9 @@ struct is_container<std::vector<T, Alloc>> : public std::true_type {};
 template<class K, class T, class Comp, class Alloc> 
 struct is_container<std::map<K, T, Comp, Alloc>> : public std::true_type {};
 
+template<class K, class T, class Comp, class Alloc> 
+struct is_container<std::unordered_map<K, T, Comp, Alloc>> : public std::true_type {};
+
 // element type
 template <typename Cont, std::enable_if_t<!is_container<typename Cont::value_type>::value>* = nullptr>
 std::string to_string(Cont const& container) {
@@ -127,6 +131,12 @@ std::ostream& operator<<(std::ostream& os, const std::map<Key,T,Comp,Alloc>& m) 
     return os;
 }
 
+template<class Key, class T, class Comp, class Alloc> 
+std::ostream& operator<<(std::ostream& os, const std::unordered_map<Key,T,Comp,Alloc>& m) {
+    using std::operator<<;
+    os << to_string(m);
+    return os;
+}
 
 template<typename U, typename V>
 std::ostream& operator<<(std::ostream& os, const std::pair<U,V>& p) {
